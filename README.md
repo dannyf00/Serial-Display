@@ -15,3 +15,4 @@ While waiting for it, I wrote out the logic and played with it in a simulator. S
 
 Then I thought I could run this on a PIC16, especially a PIC16F193x -> the beauty of those chips is that it has 6 consecutive pins on both sides of those chips, RA0..5 on one side, and then RB6..1 on the other side. This allows me to just drop in a 4-digit LED and I can have a serial display with only two components: the PIC16F and the 4-digit LED display.
 
+For the PIC16 version, see here: https://dannyelectronics.wordpress.com/2017/06/25/worlds-simplest-serial-display-pic16f/
