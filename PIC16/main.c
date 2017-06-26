@@ -71,8 +71,9 @@ int main(void) {
 	char ch;
 	
 	mcu_init();							    //initialize the mcu at 16Mhz
+	lRAM[0]=0, lRAM[1]=0, lRAM[2]=0, lRAM[3]=0;	//initialize the display
 	led_init();								//reset the led
-	tmr0_init(TMR0_PS_32x);					//reset tmr0 -> need to maintain a minimum refresh rate of 25Hz
+	tmr0_init(TMR0_PS_16x);					//reset tmr0 -> need to maintain a minimum refresh rate of 25Hz
 	tmr0_act(led_display);					//install the handler
 	uart_init(LEDx4_BPS);					//reset uart to desired baud rate
 	ei();									//enable interrupts
@@ -84,10 +85,11 @@ int main(void) {
 			//uart2_put(ch);				//transmit it to the next device in chain
 			uart_put(process(ch));			//process the data received and send out only the valid char
 		}
-
 #else										//for transmitter only - for debugging, to simulate an input
-		uart_puts((char *)"12345678\n\r");
-		delayms(100);						//waste sometime
+		uart_puts((char *)"12345678\n\r");	delayms(1000);						//waste sometime
+		//uart_puts((char *)"87654321\n\r");	delayms(1000);						//waste sometime
+		//uart_puts((char *)"45678910\n\r");	delayms(1000);						//waste sometime
+		//uart_puts((char *)"12349876\n\r");	delayms(1000);						//waste sometime
 #endif
 	}
 }
